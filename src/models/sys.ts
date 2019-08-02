@@ -7,6 +7,9 @@ const model: Model = {
     reducers: {
     },
     effects: {
+        * error ({ payload }, { call, put }) {
+            yield call(() => {console.error('sys error', payload)})
+        }
     },
     subscriptions: {
     }

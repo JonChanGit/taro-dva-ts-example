@@ -1,41 +1,62 @@
+
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
+import { View, Text} from '@tarojs/components'
+import { connect } from '@tarojs/redux'
+// import Api from '../../utils/request'
+// import Tips from '../../utils/tips'
+import { IndexProps, IndexState } from './index.interface'
 import './index.less'
-import { AtButton, AtIcon } from 'taro-ui'
+import { AtButton } from 'taro-ui'
+// import {  } from '../../components'
 
+@connect(({ index }) => ({
+    ...index,
+}))
 
-export default class Index extends Component {
-
-  /**
-   * 指定config的类型声明为: Taro.Config
-   *
-   * 由于 typescript 对于 object 类型推导只能推出 Key 的基本类型
-   * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
-   * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
-   */
-  config: Config = {
-    navigationBarTitleText: '首页'
+class Index extends Component<IndexProps,IndexState > {
+  config:Config = {
+    navigationBarTitleText: 'taro_dva_typescript'
+  }
+  constructor(props: IndexProps) {
+    super(props)
+    this.state = {}
   }
 
-  componentWillMount () { }
+  async getList() {
+    await this.props.dispatch({
+      type: 'index/getList',
+      payload: {}
+    })
+  }
 
-  componentDidMount () { }
+  componentDidMount() {
+    this.getList()
+  }
 
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
-
-  render () {
+  render() {
+    const { data } = this.props
+    console.log('this.props===>>',data);
+    
     return (
-      <View className='index'>
-        <Text>Hello world!</Text>
-        <AtButton type='primary'>按钮文案</AtButton> 
-        <AtButton>按钮文案</AtButton>
-        <AtIcon value='clock' size='30' color='#F00'></AtIcon>
-        <View className='at-icon at-icon-settings'></View>
+      <View className='fx-index-wrap'>
+          <AtButton type='primary'>按钮文案</AtButton>
+          <View className='index-topbar'>New资讯</View>
+          <View className='index-data'>
+            {
+              data && data.map((item,index) => {
+                return (
+                  <View className='index-list' key={index}>
+                    <View className='index-title'>{item.title}</View>
+                    <View className='index-img' style={`background-image: url(${item.thumbnail_pic_s})`}></View>
+                  </View>
+                )
+              })
+            }
+          </View>
       </View>
     )
   }
 }
+
+export default Index
+

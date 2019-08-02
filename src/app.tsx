@@ -3,7 +3,7 @@ import '@tarojs/async-await'
 import Index from './pages/index'
 import { Provider } from '@tarojs/redux'
 
-import dva from './dva'
+import dva from './config/dva'
 import models from './models'
 import action from './utils/action'
 
