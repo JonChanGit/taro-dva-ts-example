@@ -1,4 +1,4 @@
 
     export default {
-        getList: '/getlist', //getlist接口
+        getList: '/top-summary/search', //getlist接口
     }

@@ -1,11 +1,12 @@
-
 /**
  * index.state 参数类型
  *
  * @export
  * @interface IndexState
  */
-export interface IndexState {}
+export interface IndexState {
+  value: string
+}
 
 /**
  * index.props 参数类型
@@ -14,14 +15,18 @@ export interface IndexState {}
  * @interface IndexProps
  */
 export interface IndexProps {
-    dispatch?: any,
-    data?: Array<DataInterface>
+  dispatch?: any,
+  data: Array<DataInterface>,
+  loading?: boolean
 }
 
 export interface DataInterface {
-    des:string,
-    lunar:string,
-    thumbnail_pic_s:string,
-    title:string,
-    _id:string
+  content: string,
+  createDateTime: number,
+  createTime: string,
+  hots: string,
+  id: string,
+  link: string,
+  mark: string,
+  originalDataId: string,
 }

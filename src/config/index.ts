@@ -4,12 +4,12 @@
  * https://www.easy-mock.com/mock/5d38269ffb233553ab0d10ad/getlist
 */
 
-export const ONLINEHOST = 'https://www.easy-mock.com/mock/5d38269ffb233553ab0d10ad/getlist';
+export const ONLINEHOST = 'https://wechat.jonpad.com.cn';
 
 /** 
  * mock 接口
  * */ 
-export const MOCKHOST = 'https://www.easy-mock.com/mock/5d38269ffb233553ab0d10ad/getlist';
+export const MOCKHOST = 'https://wechat.jonpad.com.cn';
 
 /** 
  * 是否mock

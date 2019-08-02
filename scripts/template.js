@@ -18,54 +18,50 @@ if (!dirName) {
 // 页面模板构建
 
 const indexTep = `
-    import Taro, { Component, Config } from '@tarojs/taro'
-    import { View } from '@tarojs/components'
-    // import { connect } from '@tarojs/redux'
-    // import Api from '../../utils/request'
-    // import Tips from '../../utils/tips'
-    import { ${capPirName}Props, ${capPirName}State } from './${dirName}.interface'
-    import './${dirName}.scss'
-    // import {  } from '../../components'
+import Taro, { Component, Config } from '@tarojs/taro'
+import { View } from '@tarojs/components'
+// import { connect } from '@tarojs/redux'
+// import Api from '../../utils/request'
+// import Tips from '../../utils/tips'
+import { ${capPirName}Props, ${capPirName}State } from './${dirName}.interface'
+import './${dirName}.scss'
+// import {  } from '../../components'
 
-    // @connect(({ ${dirName} }) => ({
-    //     ...${dirName},
-    // }))
 
-    class ${capPirName} extends Component<${capPirName}Props,${capPirName}State > {
-    config:Config = {
-        navigationBarTitleText: '页面标题'
-    }
-    constructor(props: ${capPirName}Props) {
-        super(props)
-        this.state = {}
-    }
+@connect(({${dirName}, loading}) => ({
+  ...${dirName},
+  loading: loading.models['index']
+}))
+class ${capPirName} extends Component<${capPirName}Props,${capPirName}State > {
 
-    componentDidMount() {
-        
-    }
+state: ${capPirName}State = {}
 
-    render() {
-        return (
-        <View className='fx-${dirName}-wrap'>
-            页面内容
-        </View>
-        )
-    }
-    }
-    export default ${capPirName}
+config:Config = {
+    navigationBarTitleText: '页面标题'
+}
+constructor(props: ${capPirName}Props) {
+    super(props)
+    this.state = {}
+}
+
+componentDidMount() {
+    
+}
+
+render() {
+    return (
+    <View className='fx-${dirName}-wrap'>
+        页面内容
+    </View>
+    )
+}
+}
+export default ${capPirName}
 `
 
 // scss 文件模板
 
-const scssTep = `
-    @import "../../assets/scss/variables";
-    .#{$prefix} {
-        &-${dirName}-wrap {
-            width: 100%;
-            min-height: 100Vh;
-        }
-    }
-`
+const scssTep = ``
 
 // config 接口地址配置模板
 
@@ -124,7 +120,7 @@ fs.mkdirSync(`./src/pages/${dirName}`); // mkdir $1
 process.chdir(`./src/pages/${dirName}`); // cd $1
 
 fs.writeFileSync(`${dirName}.tsx`, indexTep); //tsx
-fs.writeFileSync(`${dirName}.scss`, scssTep); // scss
+fs.writeFileSync(`${dirName}.less`, scssTep); // less
 fs.writeFileSync('config.ts', configTep); // config
 fs.writeFileSync('service.ts', serviceTep); // service
 fs.writeFileSync('model.ts', modelTep); // model
