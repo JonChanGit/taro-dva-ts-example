@@ -5,7 +5,10 @@
  * @interface IndexState
  */
 export interface IndexState {
-  value: string
+  value: string,
+  openToast: boolean,
+  toastText: string,
+  current: any
 }
 
 /**

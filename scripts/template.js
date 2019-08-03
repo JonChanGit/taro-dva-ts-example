@@ -20,11 +20,11 @@ if (!dirName) {
 const indexTep = `
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View } from '@tarojs/components'
-// import { connect } from '@tarojs/redux'
+import { connect } from '@tarojs/redux'
 // import Api from '../../utils/request'
 // import Tips from '../../utils/tips'
 import { ${capPirName}Props, ${capPirName}State } from './${dirName}.interface'
-import './${dirName}.scss'
+import './${dirName}.less'
 // import {  } from '../../components'
 
 

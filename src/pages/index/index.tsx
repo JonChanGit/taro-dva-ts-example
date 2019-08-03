@@ -1,7 +1,7 @@
 import Taro, {Component, Config} from '@tarojs/taro'
 import {View} from '@tarojs/components'
 import {connect} from '@tarojs/redux'
-import {AtButton, AtList, AtListItem, AtForm, AtInput, AtActivityIndicator} from 'taro-ui'
+import {AtButton, AtList, AtListItem, AtForm, AtInput, AtActivityIndicator, AtToast, AtTabBar} from 'taro-ui'
 import {BaseEventOrig, CommonEvent, CommonEventFunction} from "@tarojs/components/types/common";
 // import Api from '../../utils/request'
 // import Tips from '../../utils/tips'
@@ -21,7 +21,10 @@ class Index extends Component<IndexProps, IndexState> {
   }
 
   state: IndexState = {
-    value: '周杰伦'
+    value: '周杰伦',
+    openToast: false,
+    toastText: '',
+    current: 0
   }
 
   constructor(props: IndexProps) {
@@ -41,7 +44,19 @@ class Index extends Component<IndexProps, IndexState> {
   printRecode = (recode: DataInterface): CommonEventFunction => {
     return () =>{
       console.log('printRecode', recode)
+      this.setState({
+        openToast: true,
+        toastText: `${recode.content} 
+        createTime: ${recode.createTime}
+        mark: ${recode.mark} hots: ${recode.hots}`
+      })
     }
+  }
+
+  nextPage = () :void => {
+    Taro.navigateTo({
+      url: '/pages/hello/hello'
+    })
   }
 
   componentDidMount() {
@@ -61,29 +76,32 @@ class Index extends Component<IndexProps, IndexState> {
     })
   }
 
+  handleTabBarClick = (value) => {
+    this.setState({
+      current: value
+    })
+  }
+
   render() {
     let {data, loading} = this.props
     data = data || []
+    const { openToast, toastText } = this.state
     return (
       <View className='fx-index-wrap'>
-        {
-          loading ? <AtActivityIndicator color='#13CE66'></AtActivityIndicator> : null
-        }
-        <AtButton type='primary'>按钮文案</AtButton>
         <AtForm
           onSubmit={this.onSubmit}
           onReset={this.onReset}
         >
           <AtInput
             name='value'
-            title='文本'
+            title='搜索关键字'
             type='text'
             placeholder='单行文本'
             value={this.state.value}
             onChange={this.handleChange}
           />
           <AtButton formType='submit'>提交</AtButton>
-          <AtButton formType='reset'>重置</AtButton>
+          <AtButton onClick={this.nextPage}>nextPage</AtButton>
         </AtForm>
         {
           loading ? <AtActivityIndicator color='#13CE66'></AtActivityIndicator> : null
@@ -92,10 +110,22 @@ class Index extends Component<IndexProps, IndexState> {
           <AtListItem title='默认事件测试' onClick={this.handleClick}/>
           {
             data.map(i => (
-              <AtListItem title={i.content} arrow='right' onClick={this.printRecode(i)}/>
+              <AtListItem title={i.content} arrow='right' onClick={this.printRecode(i)} note={'收录时间：' + i.createTime}/>
             ))
           }
         </AtList>
+        <AtToast isOpened={openToast} text={toastText} ></AtToast>
+        <View style={{height: '90px'}}/>
+        <AtTabBar
+          fixed
+          tabList={[
+            { title: '待办事项', iconType: 'bullet-list', text: 'new' },
+            { title: '拍照', iconType: 'camera' },
+            { title: '文件夹', iconType: 'folder', text: '100', max: 99 }
+          ]}
+          onClick={this.handleTabBarClick}
+          current={this.state.current}
+        />
       </View>
     )
   }
