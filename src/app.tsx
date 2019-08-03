@@ -1,7 +1,7 @@
 import Taro, { Component, Config } from '@tarojs/taro'
+import { Provider } from '@tarojs/redux'
 import '@tarojs/async-await'
 import Index from './pages/index'
-import { Provider } from '@tarojs/redux'
 
 import dva from './config/dva'
 import models from './models'

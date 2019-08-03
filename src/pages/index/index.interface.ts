@@ -16,7 +16,7 @@ export interface IndexState {
  */
 export interface IndexProps {
   dispatch?: any,
-  data: Array<DataInterface>,
+  data?: Array<DataInterface>,
   loading?: boolean
 }
 

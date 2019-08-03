@@ -62,7 +62,8 @@ class Index extends Component<IndexProps, IndexState> {
   }
 
   render() {
-    const {data, loading} = this.props
+    let {data, loading} = this.props
+    data = data || []
     return (
       <View className='fx-index-wrap'>
         {
