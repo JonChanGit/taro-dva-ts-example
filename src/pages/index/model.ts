@@ -17,18 +17,22 @@ export default {
   },
   effects: {
     * getList({payload}, {call, put}) {
-      const {responseBody} = yield call(indexApi.getList, {
+      const {responseBody}: { responseBody: Array<DataInterface> } = yield call(indexApi.getList, {
         key: payload
       })
       console.log('数据接口返回', responseBody);
       // 数据处理
-      const map: Map<string, string> = new Map<string, string>();
+      const map: Map<string, DataInterface> = new Map<string, DataInterface>();
       const data = responseBody.filter((i: DataInterface) => {
         const _key = map.get(i.content);
         if (_key) {
+          // @ts-ignore
+          _key.frequency = _key.frequency + 1
+          i.frequency = _key.frequency
           return false;
         }
-        map.set(i.content, i.content)
+        i.frequency = 1
+        map.set(i.content, i)
         return true
       })
       yield put(action('save', {data}));

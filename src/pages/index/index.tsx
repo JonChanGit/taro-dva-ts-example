@@ -21,7 +21,7 @@ class Index extends Component<IndexProps, IndexState> {
   }
 
   state: IndexState = {
-    value: '周杰伦',
+    value: '五星红旗',
     openToast: false,
     toastText: '',
     current: 0
@@ -48,7 +48,9 @@ class Index extends Component<IndexProps, IndexState> {
         openToast: true,
         toastText: `${recode.content} 
         createTime: ${recode.createTime}
-        mark: ${recode.mark} hots: ${recode.hots}`
+        mark: ${recode.mark} hots: ${recode.hots}
+        frequency: ${recode.frequency}
+        `
       })
     }
   }
@@ -110,7 +112,7 @@ class Index extends Component<IndexProps, IndexState> {
           <AtListItem title='默认事件测试' onClick={this.handleClick}/>
           {
             data.map(i => (
-              <AtListItem title={i.content} arrow='right' onClick={this.printRecode(i)} note={'收录时间：' + i.createTime}/>
+              <AtListItem title={i.content} arrow='right' onClick={this.printRecode(i)} note={'收录时间：' + i.createTime + ' 收录次数：' + i.frequency}/>
             ))
           }
         </AtList>

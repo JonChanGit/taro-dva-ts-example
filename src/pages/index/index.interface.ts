@@ -32,4 +32,8 @@ export interface DataInterface {
   link: string,
   mark: string,
   originalDataId: string,
+  /**
+   * 收录次数
+   */
+  frequency?: number
 }
