@@ -100,6 +100,7 @@ class Index extends Component<IndexProps, IndexState> {
             type='text'
             placeholder='单行文本'
             value={this.state.value}
+            clear
             onChange={this.handleChange}
           />
           <AtButton formType='submit'>提交</AtButton>
