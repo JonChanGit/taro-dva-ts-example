@@ -5,8 +5,9 @@ import {AtButton, AtList, AtListItem, AtForm, AtInput, AtActivityIndicator, AtTo
 import {BaseEventOrig, CommonEvent, CommonEventFunction} from "@tarojs/components/types/common";
 // import Api from '../../utils/request'
 // import Tips from '../../utils/tips'
-import {DataInterface, IndexProps, IndexState} from './index.interface'
+import { IndexProps, IndexState} from './index.interface'
 import './index.less'
+import {DataInterface} from "../../types/data";
 
 // import {  } from '../../components'
 

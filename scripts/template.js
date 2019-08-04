@@ -66,35 +66,35 @@ const scssTep = ``
 // config 接口地址配置模板
 
 const configTep =`
-    export default {
-        test:'/wechat/perfect-info',  //XX接口
-    }
+export default {
+    test:'/wechat/perfect-info',  //XX接口
+}
 `
 
 // 接口请求模板
 
 const serviceTep =`
-    import Api from '../../utils/request'
-    export const testApi = data => Api.test(
-        data
-    )
+import Api from '../../utils/request'
+export const testApi = data => Api.test(
+    data
+)
 `
 
 // model 模板
 
 const modelTep = `
-    // import Taro from '@tarojs/taro';
-    // import * as ${dirName}Api from './service';
-    export default {
-        namespace: '${dirName}',
-        state: {
-        },
-        
-        effects: {},
-        
-        reducers: {}
+// import Taro from '@tarojs/taro';
+// import * as ${dirName}Api from './service';
+export default {
+    namespace: '${dirName}',
+    state: {
+    },
     
-    }
+    effects: {},
+    
+    reducers: {}
+
+}
 
 `
 

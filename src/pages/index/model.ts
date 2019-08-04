@@ -1,7 +1,7 @@
 // import Taro from '@tarojs/taro';
 import * as indexApi from './service';
 import action from "../../utils/action";
-import {DataInterface} from "./index.interface";
+import {DataInterface} from "../../types/data";
 
 export default {
   namespace: 'index',

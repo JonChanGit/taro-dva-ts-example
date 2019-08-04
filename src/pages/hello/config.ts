@@ -1,4 +1,3 @@
-
-    export default {
-        test:'/wechat/perfect-info',  //XX接口
-    }
+export default {
+  test: '/wechat/perfect-info',  //XX接口
+}
